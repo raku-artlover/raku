@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PROFILE - Raku Watanabe</title>
+
+<style>
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: "Helvetica", sans-serif;
+  background: #fff;
+  color: #000;
+}
+
+/* 左上ロゴ */
+.logo {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  font-size: 30px;
+  font-weight: bold;
+  z-index: 500;
+  color: #000;
+  text-decoration: none;
+}
+
+/* プロフィールセクション */
+.profile-section {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1400px;
+  margin: 100px auto 60px;
+  gap: 80px;
+  align-items: flex-start;
+  padding: 0 100px;
+}
+
+.profile-image {
+  flex: 1;
+  min-width: 200px;
+  position: relative;
+}
+
+.profile-image img {
+  width: 100%;
+  border-radius: 15px;
+  object-fit: cover;
+}
+
+.photo-credit {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  font-size: 16px;
+  color: rgba(0,0,0,0.9);
+  text-shadow: 0 0 5px rgba(255,255,255,0.7);
+  pointer-events: none;
+}
+
+.profile-text {
+  flex: 1;
+  min-width: 280px;
+}
+
+.profile-text h2 {
+  font-size: 28px;
+  font-weight: 600;
+  margin: 0 0 20px 0;
+  margin-top: 30px;
+}
+
+.profile-text a {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  margin-top: 20px;
+  text-decoration: none;
+  color: #000;
+}
+
+.profile-text p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-top: 30px;
+}
+
+/* 活動実績・メディア掲載 */
+.section-list {
+  margin-top: 30px;
+}
+
+.section-list h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 70px;
+  margin-bottom: 20px;
+}
+
+.section-list dl {
+  margin: 0;
+  padding: 0;
+}
+
+.section-list dl dt {
+  float: left;
+  width: 100px;
+  font-weight: 500;
+}
+
+.section-list dl dd {
+  margin: 0 0 25px 110px;
+  line-height: 1.6;
+}
+
+/* スマホ対応 */
+@media screen and (max-width: 768px) {
+  .profile-section {
+    flex-direction: column;
+    padding: 0 20px;
+  }
+  .profile-image, .profile-text {
+    min-width: 100%;
+  }
+  .section-list dl dt {
+    float: none;
+    width: auto;
+    margin-bottom: 5px;
+  }
+  .section-list dl dd {
+    margin-left: 0;
+  }
+}
+
+/* --- オーバーレイ用 --- */
+#intro-overlay {
+  position: fixed;
+  top:0;
+  left:0;
+  width:100vw;
+  height:100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0,0,0,0); /* 初期は透明 */
+  z-index: 9999;
+  pointer-events: none;
+  animation: overlayFade 5s forwards; /* 5秒フェード */
+}
+
+#intro-overlay img {
+  max-width: 50%;
+  max-height: 50%;
+  opacity: 0;
+  animation: imageFade 5s forwards; /* 5秒フェード */
+}
+
+/* 背景フェードイン/アウト */
+@keyframes overlayFade {
+  0%   { background: rgba(0,0,0,0); }
+  50%  { background: rgba(0,0,0,0.2); }
+  100% { background: rgba(0,0,0,0); }
+}
+
+/* 画像フェードイン/アウト */
+@keyframes imageFade {
+  0%   { opacity:0; }
+  50%  { opacity:1; }
+  100% { opacity:0; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- オーバーレイ -->
+<div id="intro-overlay">
+  <img src="intro.png" alt="Intro Image">
+</div>
+
+<a href="index.html" class="logo">Raku Watanabe</a>
+
+<section class="profile-section">
+  <div class="profile-image">
+    <img src="プロフ.jpg" alt="Raku Watanabe">
+    <div class="photo-credit">Photo by soramimicamera</div>
+  </div>
+  <div class="profile-text">
+    <h2>渡邉 楽</h2>
+    <p>遊び場<br>2006年富山県生まれ。東京藝術大学美術学部先端芸術表現科在学中。早稲田大学お笑い工房LUDO所属。遊びと制作の境界線を設けず、日常の気づきや普段考えていることを目に見えるかたちに落とし込むように作品を制作している。小さい子供と全力で遊ぶことができる。赤エビの寿司が好き。</p>
+    
+    <div class="section-list">
+      <h3>活動実績</h3>
+      <dl>
+        <dt>2022</dt><dd>令和4年度さわやか運動ポスター・スローガン募集 スローガン部門 努力賞</dd>
+        <dt></dt><dd>美の祭典越中アートフェスタ2022 立体部門 奨励賞</dd>
+        <dt></dt><dd>美の祭典越中アートフェスタ2022 平面部門 奨励賞</dd>
+        <dt>2023</dt><dd>第4回公募アートハウスおやべ現代造形展 インスタレーション部門 入選</dd>
+        <dt></dt><dd>M-1グランプリ2023 2回戦進出</dd>
+        <dt></dt><dd>地域安全運動啓発ポスター・標語 ポスター部門 審査員特別賞</dd>
+        <dt></dt><dd>美の祭典越中アートフェスタ 2023 入選、越中アート未来賞</dd>
+        <dt>2024</dt><dd>第30回高岡市民美術展 彫刻部門 優秀賞</dd>
+        <dt></dt><dd>ハイスクールマンザイ2024 優勝</dd>
+        <dt></dt><dd>第三十五回伊藤園お〜いお茶新俳句大賞 佳作</dd>
+        <dt></dt><dd>2024年度 第21回福祉用具アイデアコンテスト 優秀賞</dd>
+        <dt></dt><dd>美の祭典越中アートフェスタ 2024 入選</dd>
+        <dt></dt><dd>全国高校生何でも、アリ。Creative Award 2024 銀賞</dd>
+      </dl>
+    </div>
+
+    <div class="section-list">
+      <h3>メディア掲載・出演</h3>
+      <dl>
+        <dt>2024</dt><dd>チューリップテレビ「THE TIME,」内 ハイスクールチェック 高岡工芸高校編</dd>
+        <dt></dt><dd>ハイスクールマンザイ2024 〜H-1甲子園〜 高校生漫才師 No.1決定戦</dd>
+        <dt></dt><dd>BBT ダイブツノイマダ！「日本一面白い高校生漫才コンビ登場！今田耕司を笑わせろ！」</dd>
+        <dt>2025</dt><dd>チューリップテレビ 柴田理恵認定 ゆるゆる富山遺産 25冬〜20年っちゃあなかなかのもんですスペシャル〜</dd>
+        <dt></dt><dd>Jタウンネット 入学式場の〝ミニチュア〟を作った藝大生に17万人混乱　「脳みそが情報を受け付けられん」「完成度高すぎて凄い」</dd>
+        <dt></dt><dd>ねとらぼ「大学入学式場のミニチュアを作った」→よく見ると……？　“脳がバグる1枚”が800万表示「頭が追いつかないww」</dd>
+       <dt></dt><dd>NHK 沼にハマってきいてみた「お笑い沼」</dd>
+        <dt></dt><dd>Steens TEEN'S SNAPSHOTS気になる10代名鑑 1126人目</dd>
+      </dl>
+    </div>
+
+  </div>
+</section>
+
+<!-- JS：オーバーレイ削除 -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const overlay = document.getElementById("intro-overlay");
+  overlay.addEventListener("animationend", () => {
+    overlay.remove();
+  });
+});
+</script>
+
+</body>
+</html>
