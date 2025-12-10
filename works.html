@@ -368,6 +368,9 @@ const wrapper = document.getElementById("pageWrapper");
 const items = Array.from(document.querySelectorAll(".work-item"));
 const gap = 30;
 
+/* 現在の並び順を保持する変数（ここが超大事） */
+let currentSorted = items;
+
 /* 丸のサイズを画面幅から計算 */
 function getItemSize() {
   const w = window.innerWidth;
@@ -378,7 +381,7 @@ function getItemSize() {
   return 130;
 }
 
-/* ★ タイトルの縮小処理 ★ */
+/* タイトルサイズ調整 */
 function applyTitleSize(size) {
   let fontJP = 22;
   let fontEN = 16;
@@ -398,11 +401,13 @@ function applyTitleSize(size) {
   });
 }
 
-/* ★ レイアウト処理 ★ */
+/* レイアウト処理 */
 function layoutItems(sorted) {
+  currentSorted = sorted;  // ★ 今の並び順を保存！（神）
+
   const size = getItemSize();
 
-  items.forEach(el => {
+  sorted.forEach(el => {
     el.style.width = size + "px";
     el.style.height = size + "px";
   });
@@ -422,7 +427,7 @@ function layoutItems(sorted) {
     const col = i % colCount;
     const row = Math.floor(i / colCount);
     const x = startX + col * (size + gap);
-    const y = 100 + row * (size + gap); /* ← 上を 140→80 に縮めた！ */
+    const y = 100 + row * (size + gap);
 
     el.style.transition =
       "left 0.8s cubic-bezier(0.22,1,0.36,1), top 0.8s cubic-bezier(0.22,1,0.36,1)";
@@ -477,9 +482,13 @@ document.querySelectorAll(".sort-menu div").forEach(btn => {
   };
 });
 
-/* リサイズ時の再レイアウト */
-window.addEventListener("resize", () => layoutItems(items));
-</script>
+/* スマホ対応：横幅が変わったときだけレイアウト（めちゃ重要） */
+let lastWidth = window.innerWidth;
 
-</body>
-</html>
+window.addEventListener("resize", () => {
+  if (window.innerWidth !== lastWidth) {
+    lastWidth = window.innerWidth;
+    layoutItems(currentSorted);
+  }
+});
+</script>
