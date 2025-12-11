@@ -6,6 +6,7 @@
 <title>WORKS - Raku Watanabe</title>
 
 <style>
+
 body, html {
   margin: 0;
   padding: 0;
@@ -15,14 +16,33 @@ body, html {
   overflow-x: hidden;
 }
 
-/* 左上ロゴ */
+/* ────────────────
+  固定ヘッダー白背景（ロゴ＋Sort の後ろ）
+──────────────── */
+.header-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 65px;              /* ロゴ位置に合わせた高さ */
+  background: #fff;
+  z-index: 900;              /* 画像より前に必ず来る */
+  pointer-events: none;      /* この帯はクリック無効 */
+}
+
+/* ロゴ ＆ Sort は pointer-events 復活 */
+.logo, .sort-menu-button {
+  pointer-events: auto;
+}
+
+/* ロゴ */
 .logo {
   position: fixed;
   top: 20px;
   left: 20px;
   font-size: 30px;
   font-weight: bold;
-  z-index: 500;
+  z-index: 950;
   color: #000;
   text-decoration: none;
 }
@@ -38,11 +58,11 @@ body, html {
   border-radius: 8px;
   font-size: 15px;
   cursor: pointer;
-  z-index: 900;
+  z-index: 950;
   user-select: none;
 }
 
-/* Sort メニュー本体 */
+/* Sort メニュー */
 .sort-menu {
   position: fixed;
   top: 65px;
@@ -53,7 +73,7 @@ body, html {
   display: none;
   flex-direction: column;
   overflow: hidden;
-  z-index: 901;
+  z-index: 960;
 }
 
 .sort-menu div {
@@ -76,6 +96,7 @@ body, html {
   overflow: hidden;
   border-radius: 50%;
   transition: transform 0.4s ease;
+  z-index: 100; /* 白帯より後ろ */
 }
 
 .work-item img {
@@ -90,7 +111,7 @@ body, html {
   transform: scale(1.1);
 }
 
-/* ----- 作品名：中央表示＆縮小対応 ----- */
+/* 作品名 */
 .work-title {
   position: absolute;
   top: 50%;
@@ -116,18 +137,21 @@ body, html {
   opacity: 1;
 }
 
-/* Wrapper（高さ調整用） */
+/* Wrapper（画像は白帯の80px下から開始） */
 #pageWrapper {
   position: relative;
   width: 100%;
-  padding-top: 80px; /* ← 上余白を縮小 */
+  padding-top: 120px; /* ← 白帯分＋余白 */
 }
 </style>
 </head>
 <body>
 
-<a href="index.html" class="logo">Raku Watanabe</a>
+<!-- 白背景帯（固定） -->
+<div class="header-bar"></div>
 
+<!-- 文字はこの帯の上に重ねる -->
+<a href="index.html" class="logo">Raku Watanabe</a>
 <div class="sort-menu-button">Sort</div>
 
 <div class="sort-menu">
@@ -136,10 +160,11 @@ body, html {
   <div data-sort="random">ランダム</div>
 </div>
 
+
 <div id="pageWrapper">
 
   <!-- ここから作品リスト（あなたのまま） -->
-  <a class="work-item" href="works/work1.html" data-year="2023.3">
+  <a class="work-item" href="works/work1.html" data-year="2023.1">
     <img src="img1.jpg">
     <div class="work-title">
       <span class="jp">いきものとして</span>
@@ -147,7 +172,7 @@ body, html {
     </div>
   </a>
 
-  <a class="work-item" href="works/work2.html" data-year="2024.2">
+  <a class="work-item" href="works/work2.html" data-year="2024">
     <img src="img2.jpg">
     <div class="work-title">
       <span class="jp">街をやわらかくする</span>
@@ -163,7 +188,7 @@ body, html {
     </div>
   </a>
 
-  <a class="work-item" href="works/work4.html" data-year="2023.5">
+  <a class="work-item" href="works/work4.html" data-year="2023.2">
     <img src="img4.jpg">
     <div class="work-title">
       <span class="jp">殻字プロジェクト</span>
@@ -171,7 +196,7 @@ body, html {
     </div>
   </a>
 
-  <a class="work-item" href="works/work5.html" data-year="2023.9">
+  <a class="work-item" href="works/work5.html" data-year="2023.5">
     <img src="img5.jpg">
     <div class="work-title">
       <span class="jp">行為の彫刻</span>
@@ -218,7 +243,7 @@ body, html {
     </div>
   </a>
 
-  <a class="work-item" href="works/work11.html" data-year="2023.1">
+  <a class="work-item" href="works/work11.html" data-year="2023">
     <img src="img11.jpg">
     <div class="work-title">
       <span class="jp">依存の客観視</span>
@@ -226,14 +251,14 @@ body, html {
     </div>
   </a>
 
-  <a class="work-item" href="works/work12.html" data-year="2023.2">
+  <a class="work-item" href="works/work12.html" data-year="2023">
     <img src="img12.jpg">
     <div class="work-title">
       <span class="jp">LET OUT!</span>
     </div>
   </a>
 
-  <a class="work-item" href="works/work13.html" data-year="2023.8">
+  <a class="work-item" href="works/work13.html" data-year="2024">
     <img src="img13.jpg">
     <div class="work-title">
       <span class="jp">ゆめ、うつつ、廻る。</span>
@@ -247,21 +272,21 @@ body, html {
       <dt>Pocky(penetration)</dt>
     </div>
   </a>
-   <a class="work-item" href="works/work15.html" data-year="2022.1">
+   <a class="work-item" href="works/work15.html" data-year="2022">
     <img src="img15.jpg">
     <div class="work-title">
       <span class="jp">再創世</span>
       <dt>Re-Genesis</dt>
     </div>
   </a>
-   <a class="work-item" href="works/work16.html" data-year="2023.7">
+   <a class="work-item" href="works/work16.html" data-year="2023">
     <img src="img16.jpg">
     <div class="work-title">
       <span class="jp">自分を他人に話す</span>
       <dt>To talk abouut oneself to Others</dt>
     </div>
   </a>
-   <a class="work-item" href="works/work17.html" data-year="2024.1">
+   <a class="work-item" href="works/work17.html" data-year="2024">
     <img src="img17.jpg">
     <div class="work-title">
       <span class="jp">「必然」の片鱗を</span>
@@ -289,7 +314,7 @@ body, html {
       <dt>Klesha Drawing</dt>
     </div>
   </a>
-  <a class="work-item" href="works/work21.html" data-year="2021.1">
+  <a class="work-item" href="works/work21.html" data-year="2021">
     <img src="img21.jpg">
     <div class="work-title">
       <span class="jp">Singularity</span>
@@ -317,14 +342,14 @@ body, html {
       <dt>Noodles</dt>
     </div>
   </a>
-  <a class="work-item" href="works/work25.html" data-year="2023.4">
+  <a class="work-item" href="works/work25.html" data-year="2023">
     <img src="img25.jpg">
     <div class="work-title">
       <span class="jp">無題（キャベツ頭）</span>
       <dt>Untitled(Cabbage Head)</dt>
     </div>
   </a>
-  <a class="work-item" href="works/work26.html" data-year="2023.6">
+  <a class="work-item" href="works/work26.html" data-year="2023">
     <img src="img26.jpg">
     <div class="work-title">
       <span class="jp">世界と接する</span>
@@ -363,85 +388,83 @@ body, html {
 </div>
 
 
+
 <script>
 const wrapper = document.getElementById("pageWrapper");
 const items = Array.from(document.querySelectorAll(".work-item"));
-const gap = 30;
 
-/* 現在の並び順を保持する変数（ここが超大事） */
 let currentSorted = items;
 
-/* 丸のサイズを画面幅から計算 */
-function getItemSize() {
-  const w = window.innerWidth;
-  if (w >= 1300) return 260;
-  if (w >= 1000) return 230;
-  if (w >= 700)  return 200;
-  if (w >= 500)  return 160;
-  return 130;
-}
-
-/* タイトルサイズ調整 */
+/* タイトルサイズ */
 function applyTitleSize(size) {
   let fontJP = 22;
   let fontEN = 16;
 
-  if (size >= 260) { fontJP=22; fontEN=16 }
-  else if (size >= 230){ fontJP=20; fontEN=15 }
-  else if (size >= 200){ fontJP=18; fontEN=14 }
-  else if (size >= 160){ fontJP=15; fontEN=12 }
-  else { fontJP=13; fontEN=11 }
+  if (size >= 260) { fontJP = 22; fontEN = 16; }
+  else if (size >= 230) { fontJP = 20; fontEN = 15; }
+  else if (size >= 200) { fontJP = 18; fontEN = 14; }
+  else if (size >= 160) { fontJP = 15; fontEN = 12; }
+  else { fontJP = 13; fontEN = 11; }
 
   document.querySelectorAll(".work-title").forEach(t => {
     const jp = t.querySelector("span");
     const en = t.querySelector("dt");
-
     if (jp) jp.style.fontSize = fontJP + "px";
     if (en) en.style.fontSize = fontEN + "px";
   });
 }
 
-/* レイアウト処理 */
+/* レイアウト */
 function layoutItems(sorted) {
-  currentSorted = sorted;  // ★ 今の並び順を保存！（神）
+  currentSorted = sorted;
 
-  const size = getItemSize();
+  const W = window.innerWidth;
+
+  /* 列数判定 */
+  let colCount;
+  if (W <= 550) colCount = 2;
+  else if (W <= 900) colCount = 3;
+  else if (W <= 1300) colCount = 4;
+  else colCount = 5;
+
+  /* 比率 */
+  const marginRatio = 0.10;
+  const gapRatio = 0.06;
+
+  const itemSize =
+    W / (colCount + gapRatio * (colCount - 1) + marginRatio * 2);
+
+  const margin = itemSize * marginRatio;
+  const gap = itemSize * gapRatio;
 
   sorted.forEach(el => {
-    el.style.width = size + "px";
-    el.style.height = size + "px";
+    el.style.width = itemSize + "px";
+    el.style.height = itemSize + "px";
   });
+  applyTitleSize(itemSize);
 
-  applyTitleSize(size);
-
-  const colCount = Math.max(
-    1, Math.floor((window.innerWidth - 20) / (size + gap))
-  );
-
-  const totalWidth = colCount * size + (colCount - 1) * gap;
-  const startX = (window.innerWidth - totalWidth) / 2;
+  const totalWidth = colCount * itemSize + gap * (colCount - 1) + margin * 2;
+  const startX = (W - totalWidth) / 2 + margin;
 
   let maxBottom = 0;
 
   sorted.forEach((el, i) => {
     const col = i % colCount;
     const row = Math.floor(i / colCount);
-    const x = startX + col * (size + gap);
-    const y = 100 + row * (size + gap);
 
-    el.style.transition =
-      "left 0.8s cubic-bezier(0.22,1,0.36,1), top 0.8s cubic-bezier(0.22,1,0.36,1)";
+    const x = startX + col * (itemSize + gap);
+    const y = 120 + row * (itemSize + gap); /* ← 白帯の高さ 120 に変更 */
 
     el.style.left = x + "px";
     el.style.top = y + "px";
 
-    maxBottom = Math.max(maxBottom, y + size);
+    maxBottom = Math.max(maxBottom, y + itemSize);
   });
 
-  wrapper.style.height = maxBottom + 10 + "px";
+  wrapper.style.height = maxBottom + 80 + "px";
 }
 
-/* 初期ランダム配置 → 整列 */
+/* 初期ランダム */
 function init() {
   const shuffled = [...items].sort(() => Math.random() - 0.5);
 
@@ -455,7 +478,7 @@ function init() {
 
 init();
 
-/* Sort メニュー処理 */
+/* Sort */
 const menuButton = document.querySelector(".sort-menu-button");
 const menuBox = document.querySelector(".sort-menu");
 
@@ -468,27 +491,65 @@ document.querySelectorAll(".sort-menu div").forEach(btn => {
   btn.onclick = () => {
     menuBox.style.display = "none";
     const type = btn.dataset.sort;
-
     let sorted = [...items];
 
-    if (type === "asc")
-      sorted.sort((a, b) => Number(a.dataset.year) - Number(b.dataset.year));
-    if (type === "desc")
-      sorted.sort((a, b) => Number(b.dataset.year) - Number(a.dataset.year));
-    if (type === "random")
-      sorted.sort(() => Math.random() - 0.5);
+    if (type === "asc") sorted.sort((a, b) => Number(a.dataset.year) - Number(b.dataset.year));
+    if (type === "desc") sorted.sort((a, b) => Number(b.dataset.year) - Number(a.dataset.year));
+    if (type === "random") sorted.sort(() => Math.random() - 0.5);
 
     layoutItems(sorted);
   };
 });
 
-/* スマホ対応：横幅が変わったときだけレイアウト（めちゃ重要） */
+/* リサイズ */
 let lastWidth = window.innerWidth;
-
 window.addEventListener("resize", () => {
   if (window.innerWidth !== lastWidth) {
     lastWidth = window.innerWidth;
     layoutItems(currentSorted);
   }
 });
+
+const isTouch = ('ontouchstart' in window);
+
+if (isTouch) {
+  items.forEach(item => {
+    let tapped = false;
+
+    item.addEventListener("click", function(e) {
+
+      const title = this.querySelector(".work-title");
+
+      // 1回目タップ：タイトル表示・遷移しない
+      if (!tapped) {
+        e.preventDefault();
+
+        title.style.opacity = 1;
+
+        tapped = true;
+
+        // 3秒後リセット
+        setTimeout(() => { 
+          tapped = false; 
+          title.style.opacity = 0; 
+        }, 3000);
+
+        return;
+      }
+
+      // 2回目タップ：リンク遷移
+      tapped = false;
+      window.location.href = this.getAttribute("href");
+    });
+  });
+}
+
+/* ─────────────────────────────── */
+
+
+
 </script>
+
+</body>
+</html>
+
