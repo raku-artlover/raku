@@ -533,36 +533,46 @@ window.addEventListener("resize", () => {
 const isTouch = ('ontouchstart' in window);
 
 if (isTouch) {
+  let activeItem = null;
+  let hideTimer = null;
+
   items.forEach(item => {
-    let tapped = false;
+    item.addEventListener("click", function (e) {
 
-    item.addEventListener("click", function(e) {
-
-      const title = this.querySelector(".work-title");
-
-      // 1回目タップ：タイトル表示・遷移しない
-      if (!tapped) {
-        e.preventDefault();
-
-        title.style.opacity = 1;
-
-        tapped = true;
-
-        // 3秒後リセット
-        setTimeout(() => { 
-          tapped = false; 
-          title.style.opacity = 0; 
-        }, 3000);
-
+      // 同じアイテムを2回タップ → 遷移
+      if (activeItem === this) {
+        window.location.href = this.getAttribute("href");
         return;
       }
 
-      // 2回目タップ：リンク遷移
-      tapped = false;
-      window.location.href = this.getAttribute("href");
+      e.preventDefault();
+
+      // 既存タイマー解除
+      if (hideTimer) clearTimeout(hideTimer);
+
+      // すべてリセット
+      items.forEach(i => {
+        i.classList.remove("is-active");
+        const t = i.querySelector(".work-title");
+        if (t) t.style.opacity = 0;
+      });
+
+      // 今回タップしたものだけ有効化
+      this.classList.add("is-active");
+      const title = this.querySelector(".work-title");
+      title.style.opacity = 1;
+      activeItem = this;
+
+      // 2秒後に完全リセット
+      hideTimer = setTimeout(() => {
+        this.classList.remove("is-active");
+        title.style.opacity = 0;
+        activeItem = null;
+      }, 2000);
     });
   });
 }
+
 
 /* ─────────────────────────────── */
 
@@ -572,4 +582,3 @@ if (isTouch) {
 
 </body>
 </html>
-
