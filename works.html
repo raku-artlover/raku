@@ -545,7 +545,7 @@ if (isTouch) {
   let hideTimer = null;
 
   items.forEach(item => {
-    item.addEventListener("click", function (e) {
+    item.addEventListener("touchstart", function (e) {
 
       // 同じアイテムを2回タップ → 遷移
       if (activeItem === this) {
@@ -555,29 +555,22 @@ if (isTouch) {
 
       e.preventDefault();
 
-      // 既存タイマー解除
       if (hideTimer) clearTimeout(hideTimer);
 
-      // すべてリセット
+      // 全解除
       items.forEach(i => {
         i.classList.remove("is-active");
-        const t = i.querySelector(".work-title");
-        if (t) t.style.opacity = 0;
       });
 
-      // 今回タップしたものだけ有効化
+      // 有効化
       this.classList.add("is-active");
-      const title = this.querySelector(".work-title");
-      title.style.opacity = 1;
       activeItem = this;
 
-      // 2秒後に完全リセット
       hideTimer = setTimeout(() => {
         this.classList.remove("is-active");
-        title.style.opacity = 0;
         activeItem = null;
       }, 2000);
-    });
+    }, { passive: false });
   });
 }
 
